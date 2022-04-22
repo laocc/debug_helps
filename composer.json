@@ -9,12 +9,13 @@
     }
   ],
   "require": {
+    "laocc/helper": "*",
     "php": ">7.1",
     "ext-json": "*"
   },
   "autoload": {
     "psr-4": {
-      "esp\\debugs\\": "src/"
+      "esp\\debugs\\": "controllers/"
     }
   }
 }

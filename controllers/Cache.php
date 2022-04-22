@@ -6,12 +6,6 @@ namespace esp\debugs;
 class Cache extends _Base
 {
 
-    public function _init()
-    {
-        $this->_dispatcher->_debug->disable();
-        $this->setViewPath('@' . dirname(__DIR__) . '/views');
-    }
-
     public function indexGet()
     {
         $data = $this->getConfig()->allConfig();
