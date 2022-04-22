@@ -65,10 +65,10 @@ class Error extends _Base
         }
         ksort($value);
         $this->assign('value', $value);
-        $this->assign('warn', $warn);
+        $this->assign('warn', intval($warn));
     }
 
-    public function errorAction()
+    public function indexGet()
     {
         $files = [];
         $path = $this->_errorPath;

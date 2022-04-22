@@ -3,41 +3,24 @@
 namespace esp\debugs;
 
 use esp\helper\library\request\Get;
+use esp\helper\library\Result;
 
 class Counter extends _Base
 {
 
-    public function counterGet()
+    public function indexGet($day)
     {
-        $this->assign('vueMixin', $this->vueMixin ?? '');
+        $data = $this->counterData($day);
+        $this->assign('data', json_encode($data));
     }
 
-    public function counterAjax()
+    public function counterData($day)
     {
-        $get = new Get();
-        $day = $get->int('type');
-        $time = time() - (86400 * $day);
+        $time = time() - (86400 * intval($day));
         $method = true;
-
-        $key = $this->config('debug.default.counter');
-
-        if ($time === 0) $time = time();
-        $key = "{$key}_counter_" . date('Y_m_d', $time);
-        $all = $this->_config->_Redis->hGetAll($key);
-        if (empty($all)) return ['data' => [], 'action' => []];
-
-        $data = [];
-        foreach ($all as $hs => $hc) {
-            $key = explode('/', $hs, 5);
-            $hour = (intval($key[0]) + 1);
-            $ca = $method ? "{$key[1]}:/{$key[4]}" : "/{$key[4]}";
-            $vm = "{$key[2]}.{$key[2]}";
-            if (!isset($data[$vm])) $data[$vm] = ['action' => [], 'data' => []];
-            if (!isset($data[$vm]['data'][$hour])) $data[$vm]['data'][$hour] = [];
-            $data[$vm]['data'][$hour][$ca] = $hc;
-            if (!in_array($ca, $data[$vm]['action'])) $data[$vm]['action'][] = $ca;
-            sort($data[$vm]['action']);
-        }
+        $conf = $this->config('counter.default');
+        $count = new \esp\debug\Counter($conf, $this->_config->_Redis);
+        $data = $count->getCounter($time, $method);
         return $data;
     }
 

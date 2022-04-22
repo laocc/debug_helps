@@ -2,20 +2,13 @@
      xmlns:v-slot="http://www.w3.org/1999/XSL/Transform"
      xmlns:v-html="http://www.w3.org/1999/XSL/Transform">
 
-    <el-form :inline="true" class="searchForm" @submit="loadBodyData" onsubmit="return !1;">
-        <el-form-item>
-            <el-radio-group v-model="bodyForm.type" size="small" @change="loadBodyData">
-                <el-radio-button label="">今天</el-radio-button>
-                <el-radio-button label="1">昨天</el-radio-button>
-                <el-radio-button label="2">前天</el-radio-button>
-            </el-radio-group>
-        </el-form-item>
 
+    <el-form :inline="true" class="searchForm" onsubmit="return !1;">
         <el-form-item>
-            <db-input v-model="bodyForm.key" @enter="doInputEnter" placeholder="搜索关键词" clearable></db-input>
-        </el-form-item>
-        <el-form-item>
-            <db-button class="btn primary small" @click="loadBodyData">查询</db-button>
+            <db-button class="btn" type="link" url="<?= $linkPath ?>/counter/index/0">今天</db-button>
+            <db-button class="btn ml5" type="link" url="<?= $linkPath ?>/counter/index/1">昨天</db-button>
+            <db-button class="btn ml5" type="link" url="<?= $linkPath ?>/counter/index/2">前天</db-button>
+            <db-button class="btn ml5" type="link" url="<?= $linkPath ?>/counter/index/3">前3天</db-button>
         </el-form-item>
     </el-form>
 
@@ -41,23 +34,17 @@
 
         </tbody>
     </table>
-    <db-open v-model="openOption"></db-open>
 
 </div>
 <script>
 
     let vm = new Vue({
         el: '#body',
-        mixins: [<?=$vueMixin?>],
         data() {
             return {
-                bodyDataApi: '<?=$linkPath?>/debug/counter',
+                bodyData: <?=$data?>,
             }
         }
     });
-
-    function callback(v) {
-        if (v.success) vm.loadBodyData();
-    }
 
 </script>

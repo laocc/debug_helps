@@ -9,6 +9,7 @@ class _Base extends Controller
     protected $_rootPath;
     protected $_errorPath;
     protected $_warnPath;
+    protected $linkPath = '';
 
     public function _init()
     {
@@ -20,10 +21,13 @@ class _Base extends Controller
         if (is_null($this->_warnPath)) $this->_warnPath = _RUNTIME . '/warn';
 
         $this->_dispatcher->_debug->disable();
-        $this->setViewPath('@' . dirname(__DIR__) . '/views');
+
         if ($this->_request->isGet()) {
             $this->assign('linkPath', $this->linkPath ?? '');
+            $this->setViewPath('@' . dirname(__DIR__) . '/views');
+            $this->setLayout(dirname(__DIR__) . '/views/layout.php');
         }
+
     }
 
 
@@ -104,7 +108,5 @@ class _Base extends Controller
         }
         return $array;
     }
-
-
 
 }
