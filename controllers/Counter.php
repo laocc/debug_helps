@@ -2,8 +2,6 @@
 
 namespace esp\debugs;
 
-use esp\helper\library\request\Get;
-use esp\helper\library\Result;
 
 class Counter extends _Base
 {

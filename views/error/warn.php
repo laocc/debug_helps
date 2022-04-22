@@ -5,7 +5,7 @@ echo '</h4>';
 
 
 foreach ($folder as $i => $f) {
-    echo "<li class='m05em float_left'><a href='/debug/warn/{$f}/' class='layui-btn layui-btn-sm'>{$f}</a></li>";
+    echo "<li class='m05em float_left'><a href='{$linkPath}/debug/warn/{$f}/' class='layui-btn layui-btn-sm'>{$f}</a></li>";
 }
 
 foreach ($file as $i => $fil) {
