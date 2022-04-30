@@ -14,8 +14,11 @@ class Tools extends _Base
 
     public function codePost()
     {
-        $code = $_POST['code'] ?? '';
-        $type = $_POST['type'] ?? '';
+        $post = file_get_contents('php://input');
+        $json = json_decode($post, true);
+        $code = $json['code'] ?? '';
+        $type = $json['type'] ?? '';
+
         switch ($type) {
             case 'qr':
                 $opt = [];

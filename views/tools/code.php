@@ -60,6 +60,24 @@
     </el-form>
 </div>
 
+<style>
+    .editBody {
+        display: flex;
+        flex: 1;
+    }
+
+    .editForm {
+        display: flex;
+        width: 1200px;
+    }
+
+    .el-tabs {
+        display: flex;
+        flex: 1;
+        height: auto;
+    }
+</style>
+
 
 <script>
     let now = '<?=date('Y-m-d H:i:s')?>';
