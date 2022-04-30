@@ -18,8 +18,7 @@ class Counter extends _Base
         $method = true;
         $conf = $this->config('counter.default');
         $count = new \esp\debug\Counter($conf, $this->_config->_Redis);
-        $data = $count->getCounter($time, $method);
-        return $data;
+        return $count->getCounter($time, $method);
     }
 
 }
