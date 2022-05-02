@@ -194,7 +194,7 @@
                 if (!a) return;
                 if (!this.code.real) return;
 
-                this.$post('/tools/code', {code: this.code.real, type: a}).then(
+                this.$post('<?=$linkPath?>/tools/code', {code: this.code.real, type: a}).then(
                     res => {
                         // console.log(res);
                         if (!res.success) return;
