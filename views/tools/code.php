@@ -31,6 +31,7 @@
                 </el-form-item>
 
             </el-tab-pane>
+
             <el-tab-pane label="编码转换">
 
                 <el-form-item label="原始内容">
@@ -45,13 +46,59 @@
                     <el-input type="textarea" v-model="code.value" :rows="6"></el-input>
                 </el-form-item>
 
-                <el-form-item label=" " v-if="code.type==='qr'">
+                <el-form-item label=" " v-if="code.type==='QR'">
                     <img :src="code.value" style="width: 260px;">
                 </el-form-item>
 
             </el-tab-pane>
 
+            <el-tab-pane label="Poster">
 
+                <el-form-item label="Url">
+                    <el-input v-model="post.api">
+                        <span slot="append">目标地址</span>
+                    </el-input>
+                </el-form-item>
+
+                <el-form-item label="Ua">
+                    <el-input v-model="post.ua">
+                        <span slot="append">UserAgent</span>
+                    </el-input>
+                </el-form-item>
+
+                <el-form-item label="Referer">
+                    <el-input v-model="post.referer">
+                        <span slot="append">Referer</span>
+                    </el-input>
+                </el-form-item>
+
+                <el-form-item label="Cookies">
+                    <el-input v-model="post.cookies">
+                        <span slot="append">Cookies</span>
+                    </el-input>
+                </el-form-item>
+
+                <el-form-item label="Proxy">
+                    <el-input v-model="post.proxy">
+                        <span slot="append">Proxy</span>
+                    </el-input>
+                </el-form-item>
+
+                <el-form-item label="Auth">
+                    <el-input v-model="post.auth">
+                        <span slot="append">认证账号</span>
+                    </el-input>
+                </el-form-item>
+
+                <el-form-item label="Headers">
+                    <el-input type="textarea" v-model="post.header" :rows="6"></el-input>
+                </el-form-item>
+
+                <el-form-item label="Data">
+                    <el-input type="textarea" v-model="post.data" :rows="6"></el-input>
+                </el-form-item>
+
+            </el-tab-pane>
         </el-tabs>
 
         <div class="submit">
@@ -86,6 +133,10 @@
         el: '#body',
         data() {
             return {
+                post:{
+                    api:'',
+
+                },
                 time: {
                     timestamp: <?=time()?>,
                     datetime: now,
@@ -102,7 +153,7 @@
                     time1: now,
                     time2: now,
                 },
-                type: ['qr', 'md5', 'sha1', 'sha256', '2power',
+                type: ['QR', 'md5', 'sha1', 'sha256', '2power',
                     'url_encode', 'url_decode',
                     'htmlentities', 'html_decode',
                     'base64_encode', 'base64_decode',

@@ -20,6 +20,7 @@ class Tools extends _Base
         $type = $json['type'] ?? '';
 
         switch ($type) {
+            case 'QR':
             case 'qr':
                 $opt = [];
                 $opt['text'] = $code;
