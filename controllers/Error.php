@@ -183,7 +183,7 @@ class Error extends _Base
         $json = json_decode($error, true);
         $debug = '';
         if ($json) {
-            $debug = $json['Debug'];
+            $debug = $json['Debug'] ?? '';
             $error = print_r($json, true);
             $error = substr($error, 7, -2);
         }
