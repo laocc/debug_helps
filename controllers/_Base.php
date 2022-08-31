@@ -23,6 +23,7 @@ class _Base extends Controller
         $this->_dispatcher->_debug->disable();
 
         if ($this->_request->isGet()) {
+            if (!$this->linkPath and $this->_request->module) $this->linkPath = "/{$this->_request->module}";
             $this->assign('linkPath', $this->linkPath ?? '');
             $this->setViewPath('@' . dirname(__DIR__) . '/views');
             $this->setLayout(dirname(__DIR__) . '/views/layout.php');

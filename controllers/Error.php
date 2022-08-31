@@ -34,7 +34,8 @@ class Error extends _Base
                     $val['er'] = $mch[1];
                 } else if (preg_match('/"message": "(.+)"/i', $text, $mch)) {
                     $val['er'] = $mch[1];
-                } else if (preg_match('/"Error": \[[\s.]+"(.+?)"\n/i', $text, $mch)) {
+//                } else if (preg_match('/"Error": \[[\s.]+"(.+?)"\n/i', $text, $mch)) {
+                } else if (preg_match('/"Error": \[\s+.+?,\s+\"(.+?)"/is', $text, $mch)) {
                     $val['er'] = $mch[1];
                 }
 
@@ -143,7 +144,7 @@ class Error extends _Base
                         unlink($fn);
                         $c++;
                     }
-                } else if (preg_match('/[2] => (.+)/i', $text, $mch)) {
+                } else if (preg_match('/"Error": \[\s+.+?,\s+\"(.+?)"/is', $text, $mch)) {
                     if ($error === $mch[1]) {
                         unlink($fn);
                         $c++;
@@ -182,7 +183,7 @@ class Error extends _Base
         $json = json_decode($error, true);
         $debug = '';
         if ($json) {
-            $debug = $json['Debug'];
+            $debug = $json['Debug'] ?? '';
             $error = print_r($json, true);
             $error = substr($error, 7, -2);
         }
