@@ -2,7 +2,6 @@
      xmlns:v-slot="http://www.w3.org/1999/XSL/Transform"
      xmlns:v-html="http://www.w3.org/1999/XSL/Transform">
 
-
     <el-form :inline="true" class="searchForm" onsubmit="return !1;">
         <el-form-item>
             <db-button class="btn" type="link" url="<?= $linkPath ?>/counter/index/0">今天</db-button>
@@ -17,7 +16,7 @@
         <thead>
         <tr>
             <th width="90">Action</th>
-            <th v-for="h in 24" style="font-size: 12px;">{{h-1}}-{{h}}</th>
+            <th v-for="h in 24" :key="h" style="font-size: 12px;">{{h-1}}-{{h}}</th>
         </tr>
         </thead>
         <tbody>
@@ -25,7 +24,18 @@
             <tr>
                 <td colspan="25" style="text-align: center;background: #2d5dc7;color: #fff;">{{vt}}</td>
             </tr>
-            <tr v-for="act in day.action">
+            <template v-if="vt==='_count_'">
+                <tr>
+                    <td>所有控制器合计</td>
+                    <td v-for="h in 24" :key="h">{{day[h]}}</td>
+                </tr>
+                <tr>
+                    <td>每秒平均请求次</td>
+                    <td v-for="h in 24" :key="h">{{parseInt((day[h]||0)/3600)}}</td>
+                </tr>
+            </template>
+
+            <tr v-else v-for="(act,a) in day.action" :key="a">
                 <td>{{act}}</td>
                 <td v-for="h in 24">{{day.data[h]?day.data[h][act]:''}}</td>
             </tr>
