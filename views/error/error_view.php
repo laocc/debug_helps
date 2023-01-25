@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/public/vui/node_modules/layui-src/dist/css/layui.css" media="all">
+
 <form action="<?=$linkPath?>/debug/file" method="get" autocomplete="off" style="width:90%;margin:0 auto;margin-top:1em;">
     <input type="tel" name="file" class="layui-input" style="width:1000px;display: inline-block"
            value="<?= $debug ?>" placeholder="输入日志文件完整路径快速查看">

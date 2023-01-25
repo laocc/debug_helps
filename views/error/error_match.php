@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/public/vui/node_modules/layui-src/dist/css/layui.css" media="all">
+
 <div style="padding:1em;">
     <table class="layui-table">
         <tbody class="layui-form">

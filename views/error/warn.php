@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/public/vui/node_modules/layui-src/dist/css/layui.css" media="all">
+
 <?php
 echo '<h4 style="padding:0.5em;">';
 echo "<a href='{$linkPath}/debug/warn/' class='blue'>warn</a>";
