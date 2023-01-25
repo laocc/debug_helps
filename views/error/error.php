@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="/public/vui/node_modules/layui-src/dist/css/layui.css" media="all">
+<script src="/public/vui/node_modules/layui-src/dist/layui.js"></script>
+<script src="/public/vui/extend/layui.extend.js?__RAND__"></script>
+<script src="/public/vui/extend/layui.patch.js?__RAND__"></script>
 
 <div class="headDiv">
     <table class="layui-table">
