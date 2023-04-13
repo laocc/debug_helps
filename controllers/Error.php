@@ -115,6 +115,30 @@ class Error extends _Base
     }
 
     /**
+     * 字符串里只有一组数字
+     *
+     * @param string $str
+     * @return string
+     */
+    private function hideOneNumber(string $str): string
+    {
+        $a = preg_match('/([a-z\x20\'\"]+)([\d\.]+)([a-z\x20\'\"]+)/i', $str, $mt);
+        if (!$a) return $str;
+        return $mt[1] . $mt[3];
+    }
+
+    /**
+     * @param string $a
+     * @param string $b
+     * @return bool
+     */
+    private function isLikeStr(string $a, string $b): bool
+    {
+        if ($a === $b) return true;
+        return $this->hideOneNumber($a) === $this->hideOneNumber($b);
+    }
+
+    /**
      * 批量删除
      * @param $error
      * @param $fl
@@ -135,17 +159,17 @@ class Error extends _Base
                 $fn = $f->getPathname();
                 $text = file_get_contents($fn);
                 if (preg_match('/"error": "(.+)"/i', $text, $mch)) {
-                    if ($error === $mch[1]) {
+                    if ($this->isLikeStr($error, $mch[1])) {
                         unlink($fn);
                         $c++;
                     }
                 } else if (preg_match('/"message": "(.+)"/i', $text, $mch)) {
-                    if ($error === $mch[1]) {
+                    if ($this->isLikeStr($error, $mch[1])) {
                         unlink($fn);
                         $c++;
                     }
                 } else if (preg_match('/"Error": \[\s+.+?,\s+\"(.+?)"/is', $text, $mch)) {
-                    if ($error === $mch[1]) {
+                    if ($this->isLikeStr($error, $mch[1])) {
                         unlink($fn);
                         $c++;
                     }
