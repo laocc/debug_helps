@@ -39,6 +39,8 @@ class Debug extends _Base
         }
 
         $path = realpath($pathT);
+        if (!$path) $this->exit("目录不存在:" . var_export($pathT, true));
+
         if (strpos($path, $this->_rootPath) !== 0) $this->exit("无权限查看该目录:" . var_export($pathT, true));
 
         if (is_file($path)) $path = dirname($path);
