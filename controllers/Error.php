@@ -15,8 +15,8 @@ class Error extends _Base
         $value = [];
         $client = [];
         foreach ($dir as $f) {
+            if ($f->isDot()) continue;
             $name = $f->getFilename();
-            if ($name === '.' or $name === '..') continue;
             $val = [];
             if ($f->isFile()) {
                 $val['fn'] = $f->getPathname();
@@ -93,10 +93,9 @@ class Error extends _Base
         if (empty($fd)) {
             $dir = new \DirectoryIterator($path);
             foreach ($dir as $f) {
+                if ($f->isDot()) continue;
                 if ($f->isDir()) {
-                    $fn = $f->getFilename();
-                    if ($fn === '.' or $fn === '..') continue;
-                    $folder[] = $fn;
+                    $folder[] = $f->getFilename();
                 }
             }
         } else {
@@ -153,8 +152,7 @@ class Error extends _Base
         $dir = new \DirectoryIterator($path);
         $c = 0;
         foreach ($dir as $f) {
-            $name = $f->getFilename();
-            if ($name === '.' or $name === '..') continue;
+            if ($f->isDot()) continue;
             if ($f->isFile()) {
                 $fn = $f->getPathname();
                 $text = file_get_contents($fn);

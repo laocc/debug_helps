@@ -45,16 +45,15 @@ class _Base extends Controller
         $array = array();
         $dir = new \DirectoryIterator($path);
         foreach ($dir as $f) {
-            if ($f->isDir()) {
-                $name = $f->getFilename();
-                if (in_array($name, ['.', '..'])) continue;
-                $nPath = "{$path}/{$name}";
-                if (is_dir($nPath)) {
-                    if ($lev) {
-                        $array[$name] = $this->path($nPath, $lev++);
-                    } else {
-                        $array[$name] = $nPath;
-                    }
+            if ($f->isDot()) continue;
+            if (!$f->isDir()) continue;
+            $name = $f->getFilename();
+            $nPath = "{$path}/{$name}";
+            if (is_dir($nPath)) {
+                if ($lev) {
+                    $array[$name] = $this->path($nPath, $lev++);
+                } else {
+                    $array[$name] = $nPath;
                 }
             }
         }
@@ -73,8 +72,8 @@ class _Base extends Controller
         $file = array();
         $dir = new \DirectoryIterator($path);
         foreach ($dir as $f) {
+            if ($f->isDot()) continue;
             $name = $f->getFilename();
-            if (in_array($name, ['.', '..'])) continue;
             if ($f->isDir()) {
                 $folder[$name] = "{$path}/{$name}";
             } elseif ($f->isFile()) {
