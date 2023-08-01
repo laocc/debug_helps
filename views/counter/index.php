@@ -35,7 +35,7 @@
                 </tr>
             </template>
 
-            <tr v-else v-for="(act,a) in day.action" :key="a">
+            <tr v-else v-for="(act,a) in day.action" :key="vt+a">
                 <td>{{act}}</td>
                 <td v-for="h in 24">{{day.data[h]?day.data[h][act]:''}}</td>
             </tr>
