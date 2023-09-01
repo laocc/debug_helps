@@ -154,7 +154,7 @@
                     time2: now,
                 },
                 type: ['QR', 'md5', 'sha1', 'sha256', '2power',
-                    'url_encode', 'url_decode','parse_str',
+                    'url_encode', 'url_decode', 'parse_str', 'json',
                     'htmlentities', 'html_decode',
                     'base64_encode', 'base64_decode',
                 ],

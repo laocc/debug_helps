@@ -40,6 +40,10 @@ class Tools extends _Base
                 if (empty($num)) $num = [];
                 $num = implode(',', $num);
                 return ['value' => $num, 'success' => 1];
+            case 'json':
+                $code = str_replace(['\"'], '"', $code);
+                $code = json_decode($code, true);
+                return ['value' => json_encode($code, 320 + 128), 'success' => 1];
             case 'url_encode':
                 return ['value' => urlencode($code), 'success' => 1];
             case 'url_decode':
