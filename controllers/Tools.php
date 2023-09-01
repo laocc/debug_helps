@@ -44,6 +44,9 @@ class Tools extends _Base
                 return ['value' => urlencode($code), 'success' => 1];
             case 'url_decode':
                 return ['value' => urldecode($code), 'success' => 1];
+            case 'parse_str':
+                parse_str(urldecode($code), $data);
+                return ['value' => json_encode($data, 320 + 128), 'success' => 1];
             case 'htmlentities':
                 return ['value' => htmlentities($code), 'success' => 1];
             case 'html_decode':

@@ -1,5 +1,5 @@
 <div id="body" class="editBody">
-    <el-form ref="form" class="editForm" style="margin:1em;width:1200px;">
+    <el-form ref="form" class="editForm" style="margin:1em;width:1360px;">
 
         <el-tabs type="border-card">
             <el-tab-pane label="时间转换">
@@ -115,7 +115,7 @@
 
     .editForm {
         display: flex;
-        width: 1200px;
+        width: 1360px;
     }
 
     .el-tabs {
@@ -154,7 +154,7 @@
                     time2: now,
                 },
                 type: ['QR', 'md5', 'sha1', 'sha256', '2power',
-                    'url_encode', 'url_decode',
+                    'url_encode', 'url_decode','parse_str',
                     'htmlentities', 'html_decode',
                     'base64_encode', 'base64_decode',
                 ],
