@@ -2,10 +2,15 @@
 
 namespace esp\debugs;
 
-use esp\core\Controller;
+use application\debugs\controllers\_BaseController;
 
-class _Base extends Controller
+class _Base extends _BaseController
 {
+
+    public function _main()
+    {
+        $this->setViewPath('@' . dirname(__DIR__) . '/views');
+    }
 
     /**
      * 读取文件目录所有文件
