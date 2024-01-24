@@ -6,32 +6,6 @@ use esp\core\Controller;
 
 class _Base extends Controller
 {
-    protected string $_rootPath;
-    protected string $_errorPath;
-    protected string $_warnPath;
-    protected string $linkPath = '';
-
-    public function _init()
-    {
-        if (!isset($this->_rootPath)) {
-            $this->_rootPath = $this->_dispatcher->_debug->root();
-            $this->_rootPath = dirname($this->_rootPath);
-        }
-        if (!isset($this->_errorPath)) $this->_errorPath = _RUNTIME . '/error';
-        if (!isset($this->_warnPath)) $this->_warnPath = _RUNTIME . '/warn';
-
-        $this->_dispatcher->_debug->disable();
-
-        if ($this->_request->isGet()) {
-            if (!$this->linkPath and $this->_request->module) $this->linkPath = "/{$this->_request->module}";
-            $this->assign('linkPath', $this->linkPath);
-            $this->setViewPath('@' . dirname(__DIR__) . '/views');
-//            $this->setLayout(dirname(__DIR__) . '/views/layout.php');
-            $this->setLayout(_ROOT . '/application/admin/views/layout.php');
-        }
-
-    }
-
 
     /**
      * 读取文件目录所有文件
