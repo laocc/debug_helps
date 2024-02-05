@@ -95,7 +95,11 @@
                 </el-form-item>
 
                 <el-form-item label="Data">
-                    <el-input type="textarea" v-model="post.data" :rows="6"></el-input>
+                    <el-input type="textarea" v-model="response" :rows="6"></el-input>
+                </el-form-item>
+
+                <el-form-item label=" ">
+                    <db-button class="btn normal" ref="submit" @click="submitForm">POST</db-button>
                 </el-form-item>
 
             </el-tab-pane>
@@ -133,6 +137,7 @@
         el: '#body',
         data() {
             return {
+                response: {},
                 post: {
                     api: '',
 
@@ -153,7 +158,8 @@
                     time1: now,
                     time2: now,
                 },
-                type: ['QR', 'md5', 'sha1', 'sha256', '2power',
+                type: [
+                    'QR', 'md5', 'sha1', 'sha256', '2power',
                     'url_encode', 'url_decode', 'parse_str', 'json',
                     'htmlentities', 'html_decode',
                     'base64_encode', 'base64_decode',
@@ -264,7 +270,18 @@
                 return parseInt(Number(new Date(tm)) / 1000);
             },
         },
-        methods: {}
+        methods: {
+            submitForm() {
+                this.$post('<?=$_linkPath . '/tools/post'?>', this.post).then(
+                    res => {
+                        console.log(res);
+                        this.response = res.value;
+                    },
+                    err => {
+                    }
+                );
+            }
+        }
 
     });
 </script>
