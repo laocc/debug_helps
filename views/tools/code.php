@@ -275,9 +275,10 @@
                 this.$post('<?=$_linkPath . '/tools/post'?>', this.post).then(
                     res => {
                         console.log(res);
-                        this.response = res.value;
+                        this.response = res.data;
                     },
                     err => {
+                        this.response = err;
                     }
                 );
             }
