@@ -94,8 +94,8 @@
                     <el-input type="textarea" v-model="post.header" :rows="6"></el-input>
                 </el-form-item>
 
-                <el-form-item label="Data">
-                    <el-input type="textarea" v-model="response" :rows="6"></el-input>
+                <el-form-item label="Response" pane>
+                    <pre style="line-height: 1.2">{{response}}</pre>
                 </el-form-item>
 
                 <el-form-item label=" ">
