@@ -245,7 +245,7 @@
                 if (!a) return;
                 if (!this.code.real) return;
 
-                this.$post('<?=$linkPath . _URI?>', {code: this.code.real, type: a}).then(
+                this.$post('<?=_URI?>', {code: this.code.real, type: a}).then(
                     res => {
                         // console.log(res);
                         if (!res.success) return;

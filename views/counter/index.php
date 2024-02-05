@@ -4,10 +4,10 @@
 
     <el-form :inline="true" class="searchForm" onsubmit="return !1;">
         <el-form-item>
-            <db-button class="btn" type="link" url="<?= $linkPath ?>/counter/index/0">今天</db-button>
-            <db-button class="btn ml5" type="link" url="<?= $linkPath ?>/counter/index/1">昨天</db-button>
-            <db-button class="btn ml5" type="link" url="<?= $linkPath ?>/counter/index/2">前天</db-button>
-            <db-button class="btn ml5" type="link" url="<?= $linkPath ?>/counter/index/3">前3天</db-button>
+            <db-button class="btn" type="link" url="<?= $_linkPath ?>/counter/index/0">今天</db-button>
+            <db-button class="btn ml5" type="link" url="<?= $_linkPath ?>/counter/index/1">昨天</db-button>
+            <db-button class="btn ml5" type="link" url="<?= $_linkPath ?>/counter/index/2">前天</db-button>
+            <db-button class="btn ml5" type="link" url="<?= $_linkPath ?>/counter/index/3">前3天</db-button>
         </el-form-item>
     </el-form>
 

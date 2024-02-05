@@ -5,12 +5,12 @@
 
 <?php
 echo '<h4 style="padding:0.5em;">';
-echo "<a href='{$linkPath}/debug/warn/' class='blue'>warn</a>";
+echo "<a href='{$_linkPath}/debug/warn/' class='blue'>warn</a>";
 echo '</h4>';
 
 
 foreach ($folder as $i => $f) {
-    echo "<li class='m05em float_left'><a href='{$linkPath}/debug/warn/{$f}/' class='layui-btn layui-btn-sm'>{$f}</a></li>";
+    echo "<li class='m05em float_left'><a href='{$_linkPath}/debug/warn/{$f}/' class='layui-btn layui-btn-sm'>{$f}</a></li>";
 }
 
 foreach ($file as $i => $fil) {
@@ -22,5 +22,5 @@ foreach ($file as $i => $fil) {
     if (time() - $time < 86400) $class = 'layui-btn layui-btn-warm';
     if (time() - $time < 3600) $class = 'layui-btn-danger';
     $fil = urlencode($fil);
-    echo "<li class='m05em float_left'><a href='{$linkPath}/debug/error_view/{$fil}/1' class='layui-btn layui-btn-sm {$class} open'  width='1600' height='700' title='系统错误'>{$name}</a></li>";
+    echo "<li class='m05em float_left'><a href='{$_linkPath}/debug/error_view/{$fil}/1' class='layui-btn layui-btn-sm {$class} open'  width='1600' height='700' title='系统错误'>{$name}</a></li>";
 }

@@ -1,5 +1,5 @@
 <div style="padding:1em;">
-    <form action="<?= $linkPath ?>/debug/ord/<?= $path ?>" class="layui-form layui-form-pane" method="get" autocomplete="off">
+    <form action="<?= $_linkPath ?>/debug/ord/<?= $path ?>" class="layui-form layui-form-pane" method="get" autocomplete="off">
 
         <div class="layui-form-item">
             <label class="layui-form-label">关键词</label>

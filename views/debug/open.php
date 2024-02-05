@@ -1,5 +1,5 @@
 <div style="padding:1em;">
-    <form action="<?= $linkPath ?>/debug/file" class="layui-form layui-form-pane"  method="get" autocomplete="off">
+    <form action="<?= $_linkPath ?>/debug/file" class="layui-form layui-form-pane"  method="get" autocomplete="off">
 
 
         <div class="layui-form-item">
