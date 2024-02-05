@@ -86,12 +86,26 @@
 
                 <el-form-item label="Auth">
                     <el-input v-model="post.auth">
-                        <span slot="append">认证账号</span>
+                        <span slot="append">Password</span>
                     </el-input>
                 </el-form-item>
 
                 <el-form-item label="Headers">
-                    <el-input type="textarea" v-model="post.header" :rows="6"></el-input>
+                    <el-input type="textarea" v-model="post.header" :rows="3"></el-input>
+                </el-form-item>
+
+                <el-form-item label="Encode" pane>
+                    <db-radio :data='{json:"JSON",xml:"XML",string:"String"}'
+                              v-model="post.encode"></db-radio>
+
+
+                    <db-radio :data='{post:"POST",get:"GET"}'
+                              v-model="post.method"></db-radio>
+
+                </el-form-item>
+
+                <el-form-item label="Data">
+                    <el-input type="textarea" v-model="post.data" :rows="3"></el-input>
                 </el-form-item>
 
                 <el-form-item label="Response" pane>
@@ -99,7 +113,7 @@
                 </el-form-item>
 
                 <el-form-item label=" ">
-                    <db-button class="btn normal" ref="submit" @click="submitForm">POST</db-button>
+                    <db-button class="btn normal" ref="submit" @click="submitForm">Submit</db-button>
                 </el-form-item>
 
             </el-tab-pane>
@@ -140,7 +154,8 @@
                 response: {},
                 post: {
                     api: '',
-
+                    encode: 'json',
+                    method: 'post'
                 },
                 time: {
                     timestamp: <?=time()?>,

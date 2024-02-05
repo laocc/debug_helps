@@ -2,11 +2,48 @@
 
 namespace esp\debugs;
 
-
+use esp\error\Error;
 use esp\gd\QrCode;
+use esp\helper\library\request\Post;
+use esp\helper\library\Result;
+use esp\http\Http;
 
 class Tools extends _Base
 {
+
+    /**
+     * @throws Error
+     */
+    public function postPost()
+    {
+        $result = new Result();
+        $post = new Post();
+        $http = new Http();
+        $url = $post->string('api');
+        $ua = $post->string('ua');
+        $encode = $post->string('encode');
+        $method = $post->string('method');
+        $referer = $post->string('referer');
+        $cookies = $post->string('cookies');
+        $proxy = $post->string('proxy');
+        $auth = $post->string('auth');
+        $header = $post->string('header');
+        $data = $post->string('data', 0);
+
+        if ($ua) $http->ua($ua);
+        if ($encode) $http->encode($encode);
+        if ($method) $http->method($method);
+        if ($referer) $http->referer($referer);
+        if ($header) $http->headers($header);
+        if ($cookies) $http->cookies($cookies);
+        if ($proxy) $http->proxy($proxy);
+        if ($auth) $http->password($auth);
+        if ($data) $http->data($data);
+        $request = $http->request($url);
+//        print_r($request);
+
+        return $result->data('response', $request->data());
+    }
 
     public function codeGet()
     {
