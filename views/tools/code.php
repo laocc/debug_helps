@@ -91,13 +91,14 @@
                 </el-form-item>
 
                 <el-form-item label="Headers">
-                    <el-input type="textarea" v-model="post.header" :rows="3"></el-input>
+                    <el-input type="textarea" v-model="post.header" :rows="3"
+                              placeholder="JSON格式、key:value，key=value，一行一项"
+                    ></el-input>
                 </el-form-item>
 
                 <el-form-item label="Encode" pane>
                     <db-radio :data='{json:"JSON",xml:"XML",string:"String"}'
                               v-model="post.encode"></db-radio>
-
 
                     <db-radio :data='{post:"POST",get:"GET"}'
                               v-model="post.method"></db-radio>
@@ -108,12 +109,12 @@
                     <el-input type="textarea" v-model="post.data" :rows="3"></el-input>
                 </el-form-item>
 
-                <el-form-item label="Response" pane>
-                    <pre style="line-height: 1.2">{{response}}</pre>
-                </el-form-item>
-
                 <el-form-item label=" ">
                     <db-button class="btn normal" ref="submit" @click="submitForm">Submit</db-button>
+                </el-form-item>
+
+                <el-form-item label="Response" pane>
+                    <pre style="line-height: 1.2">{{response}}</pre>
                 </el-form-item>
 
             </el-tab-pane>

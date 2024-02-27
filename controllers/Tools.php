@@ -27,7 +27,7 @@ class Tools extends _Base
         $cookies = $post->string('cookies');
         $proxy = $post->string('proxy');
         $auth = $post->string('auth');
-        $header = $post->string('header');
+        $header = $post->string('header', 0);
         $data = $post->string('data', 0);
 
         if ($ua) $http->ua($ua);
