@@ -103,6 +103,9 @@
                     <db-radio :data='{post:"POST",get:"GET"}'
                               v-model="post.method"></db-radio>
 
+                    <db-radio :data='{data:"Data",html:"Html",http:"Http",result:"Result"}'
+                              v-model="post.result"></db-radio>
+
                 </el-form-item>
 
                 <el-form-item label="Data">
@@ -156,7 +159,8 @@
                 post: {
                     api: '',
                     encode: 'json',
-                    method: 'post'
+                    method: 'post',
+                    result: 'html'
                 },
                 time: {
                     timestamp: <?=time()?>,
@@ -288,6 +292,7 @@
         },
         methods: {
             submitForm() {
+                this.response = '';
                 this.$post('<?=$_linkPath . '/tools/post'?>', this.post).then(
                     res => {
                         console.log(res);

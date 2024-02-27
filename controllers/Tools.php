@@ -29,6 +29,9 @@ class Tools extends _Base
         $auth = $post->string('auth');
         $header = $post->string('header', 0);
         $data = $post->string('data', 0);
+        $ret = $post->string('?result');
+
+        $http->timeout(0)->wait(0);
 
         if ($ua) $http->ua($ua);
         if ($encode) $http->encode($encode);
@@ -42,7 +45,10 @@ class Tools extends _Base
         $request = $http->request($url);
 //        print_r($request);
 
-        return $result->data('response', $request->data());
+        if ($ret === 'http') return $request;
+        if ($ret === 'data') return $request->data();
+        if ($ret === 'result') return $result->data($request->data());
+        return $request->html();
     }
 
     public function codeGet()
