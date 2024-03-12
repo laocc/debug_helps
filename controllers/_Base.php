@@ -9,6 +9,12 @@ class _Base extends _BaseController
 
     public function _main()
     {
+        if (!$this->_request->isGet()) return;
+
+        $uri = explode('/', getenv('REQUEST_URI'));
+        if (($uri[1] ?? '') === 'debugs') {
+            $this->assign('_linkPath', $this->_linkPath);
+        }
         $this->setViewPath('@' . dirname(__DIR__) . '/views');
     }
 
