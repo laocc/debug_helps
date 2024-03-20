@@ -3,6 +3,7 @@
 namespace esp\debugs;
 
 use esp\error\Error;
+use esp\gd\BarCode;
 use esp\gd\QrCode;
 use esp\helper\library\request\Post;
 use esp\helper\library\Result;
@@ -59,10 +60,17 @@ class Tools extends _Base
     {
         $post = file_get_contents('php://input');
         $json = json_decode($post, true);
-        $code = $json['code'] ?? '';
+        $code = urldecode($json['code'] ?? '');
         $type = $json['type'] ?? '';
 
         switch ($type) {
+            case 'BarCode':
+                $option = [];
+                $option['code'] = $code;
+                $option['save'] = 4;
+                $code1 = new BarCode();
+                $val = $code1->create($option);
+                return ['value' => 'data:image/png;base64,' . $val, 'success' => 1];
             case 'QR':
             case 'qr':
                 $opt = [];
@@ -70,8 +78,8 @@ class Tools extends _Base
                 $opt['width'] = 260;
                 $opt['save'] = 4;
                 $qr = new QrCode();
-                $code = $qr->create($opt);
-                return ['value' => 'data:image/png;base64,' . $code, 'success' => 1];
+                $val = $qr->create($opt);
+                return ['value' => 'data:image/png;base64,' . $val, 'success' => 1];
             case 'md5':
                 return ['value' => md5($code), 'success' => 1];
             case 'sha1':

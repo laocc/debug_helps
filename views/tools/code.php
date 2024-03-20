@@ -39,14 +39,14 @@
                 </el-form-item>
 
                 <el-form-item label="转码方式" pane>
-                    <db-radio :data="type" v-model="code.type" type="button"></db-radio>
+                    <db-radio :data="type" type="radio" v-model="code.type"></db-radio>
                 </el-form-item>
 
                 <el-form-item label="转换内容">
                     <el-input type="textarea" v-model="code.value" :rows="6"></el-input>
                 </el-form-item>
 
-                <el-form-item label=" " v-if="code.type==='QR'">
+                <el-form-item label=" " v-if="code.type==='QR' || code.type==='BarCode'">
                     <img :src="code.value" style="width: 260px;">
                 </el-form-item>
 
@@ -145,6 +145,7 @@
         flex: 1;
         height: auto;
     }
+
 </style>
 
 
@@ -179,7 +180,7 @@
                     time2: now,
                 },
                 type: [
-                    'QR', 'md5', 'sha1', 'sha256', '2power',
+                    'BarCode', 'QR', 'md5', 'sha1', 'sha256', '2power',
                     'url_encode', 'url_decode', 'parse_str', 'json',
                     'htmlentities', 'html_decode',
                     'base64_encode', 'base64_decode',
