@@ -13,6 +13,11 @@ class Cache extends _Base
         $this->assign('data', $data);
     }
 
+    public function phpinfoGet()
+    {
+
+    }
+
     public function opcacheGet()
     {
 

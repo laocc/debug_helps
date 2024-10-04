@@ -12,6 +12,7 @@
                 ResourceRand
             </db-button>
             <db-button class="btn parent ml5" url="<?= $_linkPath ?>/cache/opcache/1">OpCache</db-button>
+            <db-button class="btn parent ml5" url="<?= $_linkPath ?>/cache/phpinfo/1">PhpInfo</db-button>
         </el-form-item>
     </el-form>
     <div style="padding:30px;margin:70px auto;">
